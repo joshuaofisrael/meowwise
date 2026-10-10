@@ -15,7 +15,7 @@ EMAIL = "joshuaofisrael@gmail.com"
 INDEXNOW_KEY = "fbe2e797c1db901fb91646b40e01856f"
 CF_BEACON_TOKEN = ""      # Cloudflare Web Analytics token; empty = beacon omitted
 GSC_TOKEN = ""            # Google Search Console verification token; empty = tag omitted
-TODAY = "2026-10-09"
+TODAY = "2026-10-11"
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ROOT, "_src")

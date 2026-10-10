@@ -56,3 +56,9 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 - Article sources (all opened): Saito et al. 2019 Sci Rep 9:5394 (10.1038/s41598-019-40616-4); Takagi et al. 2022 Sci Rep 12:6155 (10.1038/s41598-022-10261-5); Saito and Shinozuka 2013 Anim Cogn 16:685-690 (10.1007/s10071-013-0620-4). Details confirmed on Crossref.
 - Schema: BlogPosting (publisher Joshua Israel Ventures LLC), FAQPage with 4 questions, BreadcrumbList. Sitemap 30 pages plus llms.txt.
 - Live: new post HTTP 200 on meowwise.com. IndexNow (api.indexnow.org): HTTP 200 for 8 URLs (new post, behavior, slow blink, blog index, research, home, sitemap.xml, llms.txt).
+
+## 2026-10-11 00:45 slot: fact article plus honest page dates
+- Data: still no Search Console or analytics, so no query data. Light run.
+- Highest EV technical fix: every page without a published key in front matter was taking the build day as its datePublished, so each rebuild made the whole site look newly published (the 9 Oct build had already moved 30 pages to 9 Oct). Pinned published (first git commit) and updated (last real edit) in front matter for all 37 source pages. Sitemap lastmod now reflects real edits (16 pages 8 Oct, 14 pages 9 Oct, 6 pages 11 Oct).
+- Article: "Do cats love their owners?" (question query in the behavior cluster). Sources opened: Vitale, Behnke and Udell 2019 Current Biology 29(18):R864 to R865 (10.1016/j.cub.2019.08.036, figures checked in the article text and OSU release); Potter and Mills 2015 PLOS ONE 10(9):e0135109 (10.1371/journal.pone.0135109); Vitale Shreve, Mehrkam and Udell 2017 Behav Processes 141:322 to 328 (10.1016/j.beproc.2017.03.016). Crossref and Europe PMC abstracts checked.
+- Internal links: behavior pillar card plus source plus related, names post related, three new /research/ entries, blog index description.
