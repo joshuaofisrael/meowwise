@@ -13,7 +13,7 @@ The content is general education, not veterinary advice.
 - [Cat nutrition](https://meowwise.com/nutrition.html): What cats need to eat and why: obligate carnivores, taurine, wet vs dry food, reading labels, treats, weight, food puzzles and the human foods that are toxic to cats.
 - [Kitten care guide](https://meowwise.com/kittens.html): How to raise a healthy, confident kitten: the 2 to 7 week socialization window, when kittens can leave their mother, vaccine schedule, neutering by 4 to 5 months and feeding.
 - [Senior cat care](https://meowwise.com/senior-cats.html): Cats are senior from age 10. How often older cats should see the vet, the diseases to watch for (kidney disease, hyperthyroidism, arthritis, diabetes) and simple home changes.
-- [Cat myths vs facts](https://meowwise.com/myths.html): Ten common cat myths checked against veterinary sources: milk, purring, one litter before spaying, pregnancy and cats, indoor vaccines, lilies, vegan diets and more.
+- [Cat myths vs facts](https://meowwise.com/myths.html): Eleven common cat myths checked against veterinary and peer reviewed sources: milk, purring, color vision, one litter before spaying, pregnancy and cats, indoor vaccines, lilies, vegan diets and more.
 - [Cat glossary](https://meowwise.com/glossary.html): Plain English definitions of cat terms vets and breeders use: AAFCO statement, body condition score, CKD, FeLV, HCM, obligate carnivore, PKD, queen, taurine and more.
 
 ## Tools
@@ -21,6 +21,7 @@ The content is general education, not veterinary advice.
 
 ## Blog
 - [Are lilies poisonous to cats?](https://meowwise.com/blog/are-lilies-poisonous-to-cats.html): Yes. True lilies and daylilies can cause fatal kidney failure in cats from a bite, pollen or vase water. Which lilies are dangerous, the signs, and what to do right away.
+- [Can cats see color?](https://meowwise.com/blog/can-cats-see-color.html): Yes, but not like most people. Cats are dichromats with two cone types (peaks near 460 nm and 560 nm) and a neutral point near 505 nm, similar to human red-green color blindness.
 - [Can cats taste sweet?](https://meowwise.com/blog/can-cats-taste-sweet.html): No. Cats carry a broken copy of the Tas1r2 gene, so they cannot build a sweet taste receptor. They do taste umami, bitter, sour and salt, and umami is their main "tasty" signal.
 - [Cat straining to pee: emergency signs](https://meowwise.com/blog/cat-straining-to-pee.html): A cat, especially a male, straining in the litter box with little or no urine may have a urethral blockage, which can be fatal within 24 to 48 hours. Signs and what to do.
 - [Do cats know their names?](https://meowwise.com/blog/do-cats-know-their-names.html): Yes. A 2019 study found household cats tell their own name apart from other words, even from a stranger. A 2022 study found cats also learn housemates' names.
