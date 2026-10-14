@@ -14,7 +14,7 @@ LEGAL = "Joshua Israel Ventures LLC"
 EMAIL = "joshuaofisrael@gmail.com"
 INDEXNOW_KEY = "fbe2e797c1db901fb91646b40e01856f"
 CF_BEACON_TOKEN = ""      # Cloudflare Web Analytics token; empty = beacon omitted
-GSC_TOKEN = ""            # Google Search Console verification token; empty = tag omitted
+GSC_TOKEN = "n-CT2j0L2EDabM9k0DipiKhgW2O-dqoDbQyRCSWqCc4"            # Google Search Console verification token; empty = tag omitted
 TODAY = "2026-10-14"
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
