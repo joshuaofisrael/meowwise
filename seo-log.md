@@ -86,3 +86,21 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 - News: no same day general audience cat news post. Mid October media covered an FIP MF-ICC diagnostic trial (primary JFMS paper April 2026); skipped rather than stretch into a NewsArticle without a dedicated news type.
 - Schema: BlogPosting with LLC publisher, FAQPage (4 questions), BreadcrumbList. published and updated 2026-10-14 on the new post; myths, research, blog index and adaptations updated: bumped. TODAY in _build.py is 2026-10-14. Sitemap 38 pages plus llms.txt (39 locs live).
 - Live: new post HTTP 200. IndexNow: HTTP 200 for 8 URLs (post, myths, research, blog index, adaptations lesson, home, sitemap.xml, llms.txt). Commit 3a6f3db. CF_BEACON_TOKEN still empty. Expenses: none.
+
+## 2026-10-15 00:45 slot: air righting article plus myths always-land glue
+- Data: still no Search Console query data in use (GSC meta tag is live on home from prior commit d1a8bd1; CF_BEACON_TOKEN empty), so no query metrics. Light run.
+- Highest EV light action: myths already covered colorblind and aloof myths but not the very common "cats always land on their feet" claim. Added a twelfth myth card (#always-land), FAQ question and Kane/Cremieux sources on /myths.html, plus an air-righting glossary term, so the new answer first post feeds the myths and glossary clusters.
+- Article: "How do cats land on their feet?" https://meowwise.com/blog/how-do-cats-land-on-their-feet.html (~930 words body). Sources opened: Kane and Scher 1969 Int J Solids Struct 5(7):663 to 670 (10.1016/0020-7683(69)90086-9, Crossref plus PDF text); Arabyan and Tsai 1998 Biol Cybern 79:393 to 401 (10.1007/s004220050488, Crossref plus PubMed abstract); Cremieux, Veraart and Wanet 1984 Exp Brain Res 54:564 to 566 (10.1007/BF00235481, Crossref plus PubMed abstract); Windle and Fish 1932 J Comp Neurol 54:85 to 96 (10.1002/cne.900540107, Crossref).
+- /research/: new Locomotion and reflexes section with four entries. Blog index description updated. TODAY in _build.py is 2026-10-15.
+- News: no relevant same day NewsArticle (Urban Cat Coalition / doorstep kitten stories noted; skipped).
+- Schema: BlogPosting with LLC publisher, FAQPage (4 questions), BreadcrumbList. published and updated 2026-10-15 on the new post; myths, research, glossary and blog index updated: bumped for real edits.
+- Live: new post HTTP 200. IndexNow: HTTP 200 for 8 URLs (post, myths, research, glossary, blog index, home, sitemap.xml, llms.txt). Commit b465ff5. CF_BEACON_TOKEN still empty. Expenses: none.
+
+## 2026-10-16 00:45 slot: meow at humans article plus behavior/glossary glue
+- Data: still no Search Console query metrics in use (CF_BEACON_TOKEN empty), so no query data. Light run.
+- Highest EV light action: behavior already covered purr, names, love and kneading with no dedicated meow page, though "why do cats meow" is a high volume question query and the glossary had no meow term. Added a behavior pillar card, FAQ question and Nicastro 2004 source on /behavior.html, plus a glossary meow term, so the new answer first post feeds the behavior and glossary clusters.
+- Article: "Why do cats meow at humans?" https://meowwise.com/blog/why-do-cats-meow-at-humans.html (~1100 words body). Sources opened: Nicastro 2004 J Comp Psychol 118(3):287 to 296 (10.1037/0735-7036.118.3.287, Crossref plus Europe PMC abstract); Nicastro and Owren 2003 J Comp Psychol 117(1):44 to 52 (10.1037/0735-7036.117.1.44, Crossref plus Europe PMC abstract); Yeon et al. 2011 Behav Processes 87(2):183 to 189 (10.1016/j.beproc.2011.03.003, Crossref plus Europe PMC abstract); Tavernier et al. 2020 J Vet Sci 21(1):e18 (10.4142/jvs.2020.21.e18, Crossref plus open access PDF).
+- /research/: four new Behavior and cognition entries. Blog index description updated. TODAY in _build.py is 2026-10-16.
+- News: no relevant same day NewsArticle (Global Cat Day / National Feral Cat Day PR and local rescue stories; skipped).
+- Schema: BlogPosting with LLC publisher, FAQPage (4 questions), BreadcrumbList. published and updated 2026-10-16 on the new post; behavior, research, glossary and blog index updated: bumped for real edits.
+- Live and IndexNow: pending commit. CF_BEACON_TOKEN still empty. Expenses: none.
