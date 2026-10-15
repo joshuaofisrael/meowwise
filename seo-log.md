@@ -103,4 +103,4 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 - /research/: four new Behavior and cognition entries. Blog index description updated. TODAY in _build.py is 2026-10-16.
 - News: no relevant same day NewsArticle (Global Cat Day / National Feral Cat Day PR and local rescue stories; skipped).
 - Schema: BlogPosting with LLC publisher, FAQPage (4 questions), BreadcrumbList. published and updated 2026-10-16 on the new post; behavior, research, glossary and blog index updated: bumped for real edits.
-- Live and IndexNow: pending commit. CF_BEACON_TOKEN still empty. Expenses: none.
+- Live: new post HTTP 200. IndexNow: HTTP 200 for 8 URLs (post, behavior, glossary, research, blog index, home, sitemap.xml, llms.txt). Commit 4a2cc3a. CF_BEACON_TOKEN still empty. Expenses: none.
