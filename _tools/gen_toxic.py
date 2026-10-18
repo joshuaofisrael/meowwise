@@ -63,7 +63,7 @@ ENTRIES = [
  ("azalea", "Azalea", "Rhododendron", "Garden plants", E, "Vomiting, diarrhea, weakness and heart failure.", [asp("azalea")]),
  ("holly", "Holly", "", "Garden plants", T, "Vomiting, diarrhea, depression. Leaves and berries are low toxicity.", [asp("holly"), "CORL"]),
  ("mistletoe", "Mistletoe (American)", "", "Garden plants", T, "Vomiting, diarrhea; rarely low blood pressure, breathing difficulty and slow heart rate.", [asp("mistletoe-american"), "CORL"]),
- ("catnip", "Catnip", "", "Garden plants", M, "Safe for most cats in small amounts, but the ASPCA notes it can cause vomiting and diarrhea.", [asp("catnip")]),
+ ("catnip", "Catnip", "", "Garden plants", M, "Safe for most cats in small amounts, but the ASPCA notes it can cause vomiting and diarrhea. Why cats react to it: <a href=\"/blog/why-do-cats-like-catnip.html\">why do cats like catnip?</a>", [asp("catnip")]),
  ("essential-oils", "Concentrated essential oils: tea tree, wintergreen, sweet birch, citrus, pine, ylang ylang, peppermint, cinnamon, pennyroyal, clove, eucalyptus", "aromatherapy oils, diffuser oils", "Essential oils and fragrance", E,
   "Cats cannot break down some compounds in essential oils well. Exposure on the skin, from walking through spills or from grooming can cause drooling, vomiting, tremors, wobbliness, breathing difficulty, low body temperature and liver failure. The ASPCA notes as few as seven or eight drops of concentrated tea tree oil can cause problems. Never apply essential oils to a cat.", ["PPHO", "ASPO"]),
  ("liquid-potpourri", "Liquid potpourri", "simmering potpourri", "Essential oils and fragrance", T, "Can cause chemical burns to the lips, tongue, gums and throat; cats are particularly sensitive.", ["PPHP", "PPHO"]),
