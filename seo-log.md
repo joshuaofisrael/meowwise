@@ -120,3 +120,10 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 - News: no news post (Giardia PLOS One candidate from 18 Oct not pursued; no time inside slot).
 - Schema: BlogPosting with LLC publisher, FAQPage (4 questions), BreadcrumbList. published and updated 2026-10-19; behavior, toxic checker, research and blog index updated: bumped for real edits. TODAY in _build.py is 2026-10-19.
 - Live: new post HTTP 200. IndexNow: HTTP 200 for 8 URLs (post, behavior, toxic checker, research, blog index, home, sitemap.xml, llms.txt). Commit 3a3b29d. Sitemap 42 pages plus llms.txt. Expenses: none.
+
+## 2026-10-20 00:45 BST slot
+- Highest EV light action: "how long do cats live" is a very high volume question query and MeowWise had no lifespan answer anywhere (senior page covered stages and diseases only). Added a "How long do cats live?" card and a lifespan FAQ question to the senior cat page with O'Neill 2015 and Teng 2024 as sources, three papers to /research/ (Genetics and health), and the topic to the blog index description.
+- Article: "How long do cats live?" https://meowwise.com/blog/how-long-do-cats-live.html (~1030 words body, breed table). Sources opened: O'Neill et al. 2015 JFMS 17(2):125 to 133 (Europe PMC abstract, PMC10816413); Teng et al. 2024 JFMS 26(5):1098612X241234556 (PMC11156239 full text: breed table, odds ratios); Montoya et al. 2023 Front Vet Sci 10:1082102 (PMC9989186 abstract); Quimby et al. 2021 AAHA/AAFP Life Stage Guidelines (Crossref and abstract).
+- News: none posted (no time inside slot).
+- Schema: BlogPosting with LLC publisher, FAQPage (4 questions), BreadcrumbList. published and updated 2026-10-20; senior, research and blog index bumped for real edits. TODAY in _build.py is 2026-10-20. Sitemap 43 pages plus llms.txt. Expenses: none.
+- Live: new post HTTP 200. IndexNow: HTTP 200 for 7 URLs (post, senior, research, blog index, home, sitemap.xml, llms.txt). Commit 0df25e2.
