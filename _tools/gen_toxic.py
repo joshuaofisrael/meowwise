@@ -3,6 +3,7 @@
 Edit ENTRIES, set REVIEWED, run this, then python3 _build.py. Only add entries with a reputable source."""
 import re, os
 REVIEWED = "2026-10-08"; REVIEWED_H = "8 October 2026"
+UPDATED = "2026-10-21"  # last content edit (blog links); bump when editing
 A = "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/"
 C = "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/"
 S = {
@@ -107,7 +108,7 @@ description: Check {n} cut flowers, houseplants, garden plants, essential oils a
 h1: Is this plant or household item toxic to cats?
 label: Toxic plant and household checker
 group: tool
-updated: {REVIEWED}
+updated: {UPDATED}
 related: blog/are-lilies-poisonous-to-cats.html, health.html, kittens.html, nutrition.html, myths.html
 source: ASPCA Animal Poison Control Center: Toxic and non toxic plants list | https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants
 source: US FDA: Lovely Lilies and Curious Cats: A Dangerous Combination | {S["FDA"][1]}
@@ -120,6 +121,7 @@ source: Cornell Feline Health Center: Poisons | {S["CORP"][1]}
 source: Cornell Feline Health Center: Common Cat Hazards | {S["CORL"][1]}
 source: International Cat Care: Permethrin poisoning | {S["ICC"][1]}
 source: ASPCA: People foods to avoid feeding your pets | {S["ASPF"][1]}
+published: 2026-10-08
 ---
 <p class="lead"><b>If your cat has touched or eaten anything marked Emergency, Toxic or Caution below, call your vet or a pet poison helpline now.</b> The most dangerous plants for cats are true lilies and daylilies: a nibble of a leaf, pollen licked off the fur or a drink of vase water can cause fatal kidney failure. Search {n} common cut flowers, houseplants, garden plants, essential oils, household products and foods below; every entry has its own link and lists the sources it relies on.</p>
 <p class="meta">Last reviewed <time datetime="{REVIEWED}">{REVIEWED_H}</time>. Only items we can source to the ASPCA, Cornell Feline Health Center, International Cat Care, Pet Poison Helpline, UC Davis or the FDA are included.</p>
