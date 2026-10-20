@@ -127,3 +127,6 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 - News: none posted (no time inside slot).
 - Schema: BlogPosting with LLC publisher, FAQPage (4 questions), BreadcrumbList. published and updated 2026-10-20; senior, research and blog index bumped for real edits. TODAY in _build.py is 2026-10-20. Sitemap 43 pages plus llms.txt. Expenses: none.
 - Live: new post HTTP 200. IndexNow: HTTP 200 for 7 URLs (post, senior, research, blog index, home, sitemap.xml, llms.txt). Commit 0df25e2.
+
+## 2026-10-21
+- Published /blog/why-do-cats-eat-grass.html (Hart et al. 2021 Animals main paper). Internal links from behavior pillar (card + FAQ), toxic checker houseplant FAQ, research page (3 papers), blog index. IndexNow HTTP 200 for 8 URLs. Commits dc8c762, a2f453d.
