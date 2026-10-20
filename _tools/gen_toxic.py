@@ -154,7 +154,7 @@ source: ASPCA: People foods to avoid feeding your pets | {S["ASPF"][1]}
 <h3>Are essential oil diffusers safe for cats?</h3>
 <p>Use caution. Pet Poison Helpline explains that cats have difficulty breaking down some compounds in essential oils, and oils such as tea tree, wintergreen, citrus, pine, peppermint, cinnamon, clove and eucalyptus are known to poison cats. Never apply oils to a cat, keep bottles out of reach and clean up spills.</p>
 <h3>Which houseplants are safe for cats?</h3>
-<p>The ASPCA lists spider plant, Boston fern, African violet and areca palm, among many others, as non toxic to cats. Check any new plant on the ASPCA list before bringing it home.</p>
+<p>The ASPCA lists spider plant, Boston fern, African violet and areca palm, among many others, as non toxic to cats. Check any new plant on the ASPCA list before bringing it home. Most cats chew plants now and then, which is normal; see <a href="/blog/why-do-cats-eat-grass.html">why do cats eat grass?</a></p>
 <h3>What should I do if my cat ate a toxic plant?</h3>
 <p>Call your vet or a pet poison helpline now, and keep the plant or a photo of it. Do not make your cat vomit or give home remedies unless a vet tells you to.</p>
 </section>
