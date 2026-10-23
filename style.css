@@ -49,3 +49,11 @@ footer{background:#1a0b2e!important;color:#f3e9ff;border-top:3px solid var(--lim
 .hero-photo{float:right;width:min(300px,40%);margin:0 0 1rem 1.2rem}@media(max-width:760px){.hero-photo{float:none;width:100%;margin:1rem 0 0}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.btn:hover{transform:none}}
 @media print{.photo{box-shadow:none!important;border:1px solid #000!important}header,footer{box-shadow:none!important}.hero{color:#000!important}body{background:#fff!important;color:#000!important;font-size:12pt}header,nav,.menu,.skip,.doodle,.yarn,.related,.noprint,.contact-us,.legal,.crumbs,.note{display:none!important}main{max-width:none;padding:0}.card,.hero,.tile{background:#fff!important;border:1px solid #000!important;box-shadow:none!important;color:#000!important}h1,h2,h3,a,.sci,.meta,.lead,footer,dt,dd{color:#000!important}a{text-decoration:none}footer{background:#fff!important;border:0!important;padding:.5rem 0}.answer-key{break-before:page}.card,li,tr{break-inside:avoid}}
+
+/* photo polish */
+.photo.ai{margin:1rem 0}.photo.wide{max-width:760px;margin-left:auto;margin-right:auto}.photo.inline{max-width:640px;margin-left:auto;margin-right:auto}
+.hero-photo.ai{width:min(420px,46%)}
+.feature{display:grid;grid-template-columns:1.1fr 1fr;gap:1.4rem;align-items:center;margin:1.4rem 0}.feature .card{margin:0}.feature.flip .photo{order:-1}.feature .photo{margin:0}
+.photo img{transition:transform .5s ease}.photo:hover img{transform:scale(1.03)}.photo{overflow:hidden}
+@media(max-width:760px){.feature{grid-template-columns:1fr}.feature.flip .photo{order:0}.hero-photo.ai{width:100%}}
+@media(prefers-reduced-motion:reduce){.photo img{transition:none}.photo:hover img{transform:none}}

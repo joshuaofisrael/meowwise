@@ -287,7 +287,7 @@ def render(p, pages_by_slug, blog_posts):
 
     footer = (DIVIDER + f'<footer>{YARN}<section class="contact-us" id="contact-us" aria-labelledby="contact-us-h"><h2 id="contact-us-h">Contact us</h2>'
               f'<p>Email <a href="mailto:{EMAIL}">{EMAIL}</a> or use our <a href="{link("contact.html")}">contact form</a>.</p></section>'
-              f'<p>{SITE_NAME}: original educational content about cats. All text and illustrations are original; photos are CC0 and credited. Not a substitute for veterinary care.</p>'
+              f'<p>{SITE_NAME}: original educational content about cats. All text and illustrations are original; photos are CC0 and credited, and AI generated images are labelled. Not a substitute for veterinary care.</p>'
               f'<p class="llc">© 2026 {LEGAL}. All rights reserved. {SITE_NAME} is owned and operated by {LEGAL}.</p>'
               f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a> · <a href="{link("teachers/")}">For teachers</a> · <a href="{link("research/")}">Research</a> · <a href="{link("games/")}">Games</a> · <a href="{link("photo-credits.html")}">Photo credits</a></p></footer>')
     beacon = ""
