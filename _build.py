@@ -17,6 +17,16 @@ CF_BEACON_TOKEN = "9ee8d6c8b58a46269869669b5c00c42c"      # Cloudflare Web Analy
 GSC_TOKEN = "n-CT2j0L2EDabM9k0DipiKhgW2O-dqoDbQyRCSWqCc4"            # Google Search Console verification token; empty = tag omitted
 TODAY = "2026-10-21"
 
+# Pages that show the shared emergency / poison-helpline box. The fragment is
+# rendered here so a rebuild cannot drop it. Numbers checked 23 Oct 2026:
+# ASPCA Animal Poison Control (888) 426-4435; Pet Poison Helpline (855) 764-7661.
+VET_BOX_SLUGS = {
+    "health.html", "care.html", "kittens.html", "senior-cats.html", "nutrition.html", "toxic-to-cats.html",
+    "blog/are-lilies-poisonous-to-cats.html", "blog/cat-straining-to-pee.html",
+    "blog/how-often-should-a-cat-see-the-vet.html", "blog/why-do-cats-eat-grass.html",
+    "blog/why-do-cats-like-catnip.html",
+}
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ROOT, "_src")
 
@@ -141,6 +151,19 @@ def cite_box(p, url):
             f'<p><b>APA (7th ed.)</b><br>{apa}</p><p><b>MLA (9th ed.)</b><br>{mla}</p><p><b>Chicago (bibliography)</b><br>{chi}</p></section>')
 
 
+def vet_box():
+    """Emergency guidance. Keep phone numbers in this one fragment."""
+    return ('<aside class="card warn vetbox" id="vet-help" aria-labelledby="vet-help-h">'
+            '<h2 id="vet-help-h">When to call a vet or emergency clinic</h2>'
+            '<p>Call your veterinarian or an emergency clinic immediately if your cat has difficulty breathing, collapses, strains to pee and passes little or nothing, has a seizure, has been injured, or may have eaten or touched a lily, a human medicine, or another poison.</p>'
+            '<ul>'
+            '<li>ASPCA Animal Poison Control Center: <a href="tel:+18884264435">(888) 426-4435</a></li>'
+            '<li>Pet Poison Helpline: <a href="tel:+18557647661">(855) 764-7661</a></li>'
+            '</ul>'
+            '<p>A consultation fee may apply. This site is educational and is not a substitute for professional veterinary advice.</p>'
+            '</aside>')
+
+
 def games_live():
     return os.path.exists(os.path.join(ROOT, "games", "index.html"))
 
@@ -169,6 +192,12 @@ def render(p, pages_by_slug, blog_posts):
             g = ('<p><b>Coming soon:</b> a small set of free, original cat games that run in the browser with no sign up and no data collected. '
                  'They will appear on this page as classroom activity ideas when they launch.</p>')
         body = body.replace("{{GAMES}}", g)
+
+    box = vet_box()
+    if "{{VET_BOX}}" in body:
+        body = body.replace("{{VET_BOX}}", box)
+    elif p["slug"] in VET_BOX_SLUGS or p.get("vetbox") == "yes":
+        body = re.sub(r"</p>", "</p>\n" + box, body, count=1)
 
     lds = []
     if typ == "home":
@@ -245,7 +274,10 @@ def render(p, pages_by_slug, blog_posts):
                 f'<meta property="og:url" content="{url}"><meta property="og:image" content="{SITE_URL}og.png">'
                 f'<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
                 f'<meta property="og:image:alt" content="MeowWise: plain language cat care guide">'
-                f'<meta name="twitter:card" content="summary_large_image">')
+                f'<meta name="twitter:card" content="summary_large_image">'
+                f'<meta name="twitter:title" content="{html.escape(title)}">'
+                f'<meta name="twitter:description" content="{html.escape(desc)}">'
+                f'<meta name="twitter:image" content="{SITE_URL}og.png">')
     head += [ld(x) for x in lds]
     head.append("</head><body>")
 
@@ -268,7 +300,7 @@ def render(p, pages_by_slug, blog_posts):
         main.append(f'<h1>{html.escape(p["h1"])}</h1>')
     if typ in CITABLE:
         main.append(f'<p class="meta">By the {SITE_NAME} team · Published <time datetime="{p["published"]}">{human_date(p["published"])}</time>'
-                    f' · Last reviewed <time datetime="{p["reviewed"]}">{human_date(p["reviewed"])}</time></p>')
+                    f' · Last reviewed: <time datetime="{p["reviewed"]}">{human_date(p["reviewed"])}</time></p>')
     if p.get("printable"):
         main.append('<p class="noprint"><button class="btn" type="button" onclick="window.print()">Print this page</button> '
                     '<span class="sci">Free to print for classroom use. No sign up, no ads.</span></p>')
