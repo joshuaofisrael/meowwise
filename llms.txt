@@ -20,6 +20,7 @@ The content is general education, not veterinary advice.
 - [Toxic plant and household checker](https://meowwise.com/toxic-to-cats.html): Check 51 cut flowers, houseplants, garden plants, essential oils and household products for toxicity to cats. Lilies first: deadly even as pollen or vase water. (searchable table with a stable #anchor per item)
 
 ## Blog
+- [Are cats left or right pawed?](https://meowwise.com/blog/are-cats-left-or-right-pawed.html): Most adult cats favor one paw for tricky tasks, but cats as a whole are not right pawed like people. In studies from Queen's University Belfast, female cats tended to use the right paw and male cats the left.
 - [Are lilies poisonous to cats?](https://meowwise.com/blog/are-lilies-poisonous-to-cats.html): Yes. True lilies and daylilies can cause fatal kidney failure in cats from a bite, pollen or vase water. Which lilies are dangerous, the signs, and what to do right away.
 - [Can cats see color?](https://meowwise.com/blog/can-cats-see-color.html): Yes, but not like most people. Cats are dichromats with two cone types (peaks near 460 nm and 560 nm) and a neutral point near 505 nm, similar to human red-green color blindness.
 - [Can cats taste sweet?](https://meowwise.com/blog/can-cats-taste-sweet.html): No. Cats carry a broken copy of the Tas1r2 gene, so they cannot build a sweet taste receptor. They do taste umami, bitter, sour and salt, and umami is their main "tasty" signal.
