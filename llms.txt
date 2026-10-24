@@ -1,6 +1,6 @@
 # MeowWise
 
-> MeowWise is a free, original, plain language guide to cats for owners and future owners: cat breeds and their inherited health risks, everyday care, health warning signs and emergencies, behavior and body language, nutrition, kittens and senior cats. Every guide answers the main question first and cites veterinary sources such as the Cornell Feline Health Center, AAFP, AAHA, International Cat Care and UC Davis. MeowWise is a brand owned and operated by Joshua Israel Ventures LLC.
+> MeowWise is a free, original, plain language guide to cats for owners and future owners: cat breeds and their inherited health risks, everyday care, health warning signs and emergencies, behavior and body language, nutrition, kittens and senior cats. Every guide answers the main question first and cites veterinary sources such as the Cornell Feline Health Center, AAFP, AAHA, International Cat Care and UC Davis.
 
 The content is general education, not veterinary advice.
 
@@ -48,7 +48,7 @@ Free classroom resources (no sign up, no ads, no data collection) with NGSS alig
 - [Cat science vocabulary](https://meowwise.com/teachers/vocabulary.html): A free printable cat science vocabulary list for grades 3 to 12: adaptation, artificial selection, carnivore, domestication, inherited trait, taurine, vibrissae and more, in plain language.
 
 ## Optional
-- [About](https://meowwise.com/about.html): MeowWise is a brand of Joshua Israel Ventures LLC: an independent cat information site. How our guides are researched, sourced, checked and updated.
+- [About](https://meowwise.com/about.html): MeowWise is an independent cat information site. How our guides are researched, sourced, checked and updated.
 - [Contact](https://meowwise.com/contact.html): Contact the MeowWise team by email or with our contact form: corrections, questions about our cat guides and suggestions for new topics.
 - [Terms of Use](https://meowwise.com/terms.html): The terms for using MeowWise, a brand of Joshua Israel Ventures LLC: general information only, not veterinary advice, warranty disclaimer, liability limits and Florida law.
 - [Privacy](https://meowwise.com/privacy.html): How Joshua Israel Ventures LLC handles information on MeowWise: contact form messages via FormSubmit, GitHub Pages server logs, Google Fonts, and cookieless Cloudflare Web Analytics. No ad cookies.

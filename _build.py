@@ -15,7 +15,7 @@ EMAIL = "joshuaofisrael@gmail.com"
 INDEXNOW_KEY = "fbe2e797c1db901fb91646b40e01856f"
 CF_BEACON_TOKEN = "9ee8d6c8b58a46269869669b5c00c42c"      # Cloudflare Web Analytics token; empty = beacon omitted
 GSC_TOKEN = "n-CT2j0L2EDabM9k0DipiKhgW2O-dqoDbQyRCSWqCc4"            # Google Search Console verification token; empty = tag omitted
-TODAY = "2026-10-21"
+TODAY = "2026-10-25"
 
 # Pages that show the shared emergency / poison-helpline box. The fragment is
 # rendered here so a rebuild cannot drop it. Numbers checked 23 Oct 2026:
@@ -120,8 +120,8 @@ def ld(obj):
 
 BRAND = {"@type": "Brand", "name": SITE_NAME, "url": SITE_URL, "logo": SITE_URL + "favicon.svg"}
 # MeowWise is only a brand (not a DBA); the legal publisher is always the LLC.
-ORG = {"@type": "Organization", "@id": SITE_URL + "#org", "name": LEGAL, "legalName": LEGAL, "url": SITE_URL, "email": EMAIL,
-       "brand": BRAND}
+ORG = {"@type": "Organization", "@id": SITE_URL + "#org", "name": SITE_NAME, "url": SITE_URL,
+       "brand": BRAND, "parentOrganization": {"@type": "Organization", "name": LEGAL}}
 
 
 def human_date(d):
@@ -144,8 +144,8 @@ def cite_box(p, url):
     tq = html.escape(t if t.endswith(("?", "!", ".")) else t + ".")
     tt = html.escape(t)
     apa = f"{SITE_NAME}. ({apa_date(p['reviewed'])}). <i>{tt}</i>{'' if t.endswith(('?', '!', '.')) else '.'} {url}"
-    mla = f"\u201c{tq}\u201d <i>{SITE_NAME}</i>, {LEGAL}, {mla_date(d)}, {bare}."
-    chi = f"{SITE_NAME}. \u201c{tq}\u201d {LEGAL}. Last modified {d.strftime('%B %-d, %Y')}. {url}."
+    mla = f"\u201c{tq}\u201d <i>{SITE_NAME}</i>, {mla_date(d)}, {bare}."
+    chi = f"{SITE_NAME}. \u201c{tq}\u201d Last modified {d.strftime('%B %-d, %Y')}. {url}."
     return ('<section class="card cite" id="cite" aria-labelledby="cite-h"><h2 id="cite-h">Cite this page</h2>'
             '<p class="sci">Students and teachers are welcome to cite this page. Add your access date if your teacher or style guide asks for one.</p>'
             f'<p><b>APA (7th ed.)</b><br>{apa}</p><p><b>MLA (9th ed.)</b><br>{mla}</p><p><b>Chicago (bibliography)</b><br>{chi}</p></section>')
@@ -202,7 +202,7 @@ def render(p, pages_by_slug, blog_posts):
     lds = []
     if typ == "home":
         lds.append({"@context": "https://schema.org", "@type": "WebSite", "name": SITE_NAME, "url": SITE_URL,
-                    "publisher": {"@type": "Organization", "@id": SITE_URL + "#org", "name": LEGAL}})
+                    "publisher": {"@type": "Organization", "@id": SITE_URL + "#org", "name": SITE_NAME}})
         lds.append(dict({"@context": "https://schema.org"}, **ORG))
     crumbs = []
     if typ != "home" and not noindex:
@@ -217,7 +217,7 @@ def render(p, pages_by_slug, blog_posts):
         lds.append({"@context": "https://schema.org", "@type": "BlogPosting" if typ == "blog" else "Article",
                     "headline": p.get("h1", title)[:110], "description": desc,
                     "datePublished": p["published"], "dateModified": p["updated"],
-                    "image": SITE_URL + "og.png", "author": {"@type": "Organization", "@id": SITE_URL + "#org", "name": LEGAL, "url": SITE_URL},
+                    "image": SITE_URL + "og.png", "author": {"@type": "Organization", "@id": SITE_URL + "#org", "name": SITE_NAME, "url": SITE_URL},
                     "publisher": dict({"@context": "https://schema.org"}, **ORG), "mainEntityOfPage": url,
                     "citation": [u for _, u in p["source"]] or None})
         if lds[-1]["citation"] is None:
@@ -228,7 +228,7 @@ def render(p, pages_by_slug, blog_posts):
               "educationalLevel": [x.strip() for x in p.get("level", "").split(",") if x.strip()],
               "audience": {"@type": "EducationalAudience", "educationalRole": "teacher"},
               "datePublished": p["published"], "dateModified": p["reviewed"],
-              "publisher": dict({"@context": "https://schema.org"}, **ORG), "author": {"@type": "Organization", "@id": SITE_URL + "#org", "name": LEGAL},
+              "publisher": dict({"@context": "https://schema.org"}, **ORG), "author": {"@type": "Organization", "@id": SITE_URL + "#org", "name": SITE_NAME},
               "about": {"@type": "Thing", "name": "Domestic cat", "sameAs": "https://www.wikidata.org/wiki/Q146"}}
         if p.get("ngss"):
             lr["educationalAlignment"] = [{"@type": "AlignmentObject", "alignmentType": "teaches",
@@ -318,9 +318,8 @@ def render(p, pages_by_slug, blog_posts):
     main.append("</main>")
 
     footer = (DIVIDER + f'<footer>{YARN}<section class="contact-us" id="contact-us" aria-labelledby="contact-us-h"><h2 id="contact-us-h">Contact us</h2>'
-              f'<p>Email <a href="mailto:{EMAIL}">{EMAIL}</a> or use our <a href="{link("contact.html")}">contact form</a>.</p></section>'
+              f'<p>Questions, corrections or ideas? <a href="{link("contact.html")}">Send us a message</a> through our contact form.</p></section>'
               f'<p>{SITE_NAME}: original educational content about cats. All text and illustrations are original; photos are CC0 and credited, and AI generated images are labelled. Not a substitute for veterinary care.</p>'
-              f'<p class="llc">© 2026 {LEGAL}. All rights reserved. {SITE_NAME} is owned and operated by {LEGAL}.</p>'
               f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a> · <a href="{link("teachers/")}">For teachers</a> · <a href="{link("research/")}">Research</a> · <a href="{link("games/")}">Games</a> · <a href="{link("photo-credits.html")}">Photo credits</a></p></footer>')
     beacon = ""
     if CF_BEACON_TOKEN:
@@ -365,7 +364,7 @@ def main():
     info = [by_slug[s] for s in ("about.html", "contact.html", "terms.html", "privacy.html", "disclaimer.html") if s in by_slug]
     breeds_anchor = by_slug.get("breeds.html", {}).get("anchors", "").replace("{{SITE}}", SITE_URL)
     llms = [f"# {SITE_NAME}", "",
-            f"> {SITE_NAME} is a free, original, plain language guide to cats for owners and future owners: cat breeds and their inherited health risks, everyday care, health warning signs and emergencies, behavior and body language, nutrition, kittens and senior cats. Every guide answers the main question first and cites veterinary sources such as the Cornell Feline Health Center, AAFP, AAHA, International Cat Care and UC Davis. {SITE_NAME} is a brand owned and operated by {LEGAL}.",
+            f"> {SITE_NAME} is a free, original, plain language guide to cats for owners and future owners: cat breeds and their inherited health risks, everyday care, health warning signs and emergencies, behavior and body language, nutrition, kittens and senior cats. Every guide answers the main question first and cites veterinary sources such as the Cornell Feline Health Center, AAFP, AAHA, International Cat Care and UC Davis.",
             "", "The content is general education, not veterinary advice.", "", "## Guides"]
     for p in guides:
         llms.append(line(p))
