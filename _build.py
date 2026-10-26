@@ -15,7 +15,7 @@ EMAIL = "joshuaofisrael@gmail.com"
 INDEXNOW_KEY = "fbe2e797c1db901fb91646b40e01856f"
 CF_BEACON_TOKEN = "9ee8d6c8b58a46269869669b5c00c42c"      # Cloudflare Web Analytics token; empty = beacon omitted
 GSC_TOKEN = "n-CT2j0L2EDabM9k0DipiKhgW2O-dqoDbQyRCSWqCc4"            # Google Search Console verification token; empty = tag omitted
-TODAY = "2026-10-25"
+TODAY = "2026-10-26"
 
 # Pages that show the shared emergency / poison-helpline box. The fragment is
 # rendered here so a rebuild cannot drop it. Numbers checked 23 Oct 2026:
