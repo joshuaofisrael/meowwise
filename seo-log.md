@@ -137,3 +137,5 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 ## 2026-10-25
 - Joshua's copyright order: LLC line and mailto removed from sitewide footer and non legal pages; Organization JSON-LD now MeowWise with parentOrganization Joshua Israel Ventures LLC; trade name copyright line added to terms, privacy, disclaimer. Commits 90ef01c, 96a364a.
 - Published /blog/are-cats-left-or-right-pawed.html (McDowell et al. 2018 Animal Behaviour main paper). Internal links from behavior pillar (card + FAQ), research page (3 papers), blog index. IndexNow HTTP 200 for 13 URLs. Commit dd088e8.
+## 2026-10-26
+- Published /blog/why-are-orange-cats-usually-male.html (Kaelin et al. 2025 Current Biology main paper; Toh et al. 2025; Szczerbal et al. 2026). Internal links from breeds page (coat color card + related), glossary (calico and tortoiseshell), research page (3 papers), blog index. IndexNow HTTP 200 for 8 URLs. Commit 313273d.
