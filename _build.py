@@ -13,6 +13,7 @@ SITE_NAME = "MeowWise"
 LEGAL = "Joshua Israel Ventures LLC"
 EMAIL = "joshuaofisrael@gmail.com"
 INDEXNOW_KEY = "fbe2e797c1db901fb91646b40e01856f"
+GA4_ID = "G-R5TMVXKZHJ"   # GA4, loaded only after consent
 CF_BEACON_TOKEN = "9ee8d6c8b58a46269869669b5c00c42c"      # Cloudflare Web Analytics token; empty = beacon omitted
 GSC_TOKEN = "n-CT2j0L2EDabM9k0DipiKhgW2O-dqoDbQyRCSWqCc4"            # Google Search Console verification token; empty = tag omitted
 TODAY = "2026-10-27"
@@ -320,12 +321,27 @@ def render(p, pages_by_slug, blog_posts):
     footer = (DIVIDER + f'<footer>{YARN}<section class="contact-us" id="contact-us" aria-labelledby="contact-us-h"><h2 id="contact-us-h">Contact us</h2>'
               f'<p>Questions, corrections or ideas? <a href="{link("contact.html")}">Send us a message</a> through our contact form.</p></section>'
               f'<p>{SITE_NAME}: original educational content about cats. All text and illustrations are original; photos are CC0 and credited, and AI generated images are labelled. Not a substitute for veterinary care.</p>'
-              f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a> · <a href="{link("teachers/")}">For teachers</a> · <a href="{link("research/")}">Research</a> · <a href="{link("games/")}">Games</a> · <a href="{link("photo-credits.html")}">Photo credits</a></p></footer>')
+              f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a> · <a href="{link("teachers/")}">For teachers</a> · <a href="{link("research/")}">Research</a> · <a href="{link("games/")}">Games</a> · <a href="{link("photo-credits.html")}">Photo credits</a> · <a href="#" data-consent-open>Cookie settings</a></p></footer>')
     beacon = ""
     if CF_BEACON_TOKEN:
         beacon = ("<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' "
                   f"data-cf-beacon='{{\"token\": \"{CF_BEACON_TOKEN}\"}}'></script><!-- End Cloudflare Web Analytics -->")
-    out = "\n".join(head) + "\n" + header + "\n" + "\n".join(main) + "\n" + footer + beacon + "</body></html>\n"
+    consent = ""
+    if GA4_ID:
+        consent = ("<style>#mtm-consent{position:fixed;left:12px;right:12px;bottom:12px;z-index:999;max-width:560px;margin:0 auto;background:#fff;color:#222;border:2px solid #333;border-radius:12px;padding:12px 14px;box-shadow:0 4px 18px rgba(0,0,0,.2);font-size:15px;line-height:1.4}"
+                   "#mtm-consent p{margin:0 0 8px}#mtm-consent button{font:inherit;padding:8px 14px;margin-right:8px;border-radius:8px;border:2px solid #333;cursor:pointer;background:#fff;color:#222}#mtm-consent .acc{background:#333;color:#fff}</style>"
+                   "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}"
+                   "gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});"
+                   f"(function(){{var K='mtm-analytics-consent',ID='{GA4_ID}',L=0;"
+                   "function load(){if(L)return;L=1;gtag('consent','update',{analytics_storage:'granted'});var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;document.head.appendChild(s);gtag('js',new Date());gtag('config',ID);}"
+                   "function close(){var b=document.getElementById('mtm-consent');if(b)b.remove();}"
+                   "function set(v){try{localStorage.setItem(K,v)}catch(e){}close();if(v==='granted')load();else{gtag('consent','update',{analytics_storage:'denied'});document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(n.indexOf('_ga')===0){document.cookie=n+'=;Max-Age=0;path=/;domain=.'+location.hostname.replace(/^www\\./,'');document.cookie=n+'=;Max-Age=0;path=/';}});}}"
+                   "function show(){if(document.getElementById('mtm-consent'))return;var d=document.createElement('div');d.id='mtm-consent';d.setAttribute('role','dialog');d.setAttribute('aria-label','Cookie consent');"
+                   "d.innerHTML='<p>We would like to use Google Analytics cookies to understand how visitors use MeowWise. No ads. <a href=\"/privacy.html\">Privacy policy</a></p><button type=\"button\" class=\"acc\">Accept</button><button type=\"button\" class=\"rej\">Reject</button>';"
+                   "d.querySelector('.acc').onclick=function(){set('granted')};d.querySelector('.rej').onclick=function(){set('denied')};document.body.appendChild(d);}"
+                   "var v=null;try{v=localStorage.getItem(K)}catch(e){}if(v==='granted')load();else if(v!=='denied')show();"
+                   "document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-consent-open]');if(t){e.preventDefault();show();}});})();</script>")
+    out = "\n".join(head) + "\n" + header + "\n" + "\n".join(main) + "\n" + footer + consent + beacon + "</body></html>\n"
     if slug != "404.html":
         out = fix_links(out, prefix)
     return out
