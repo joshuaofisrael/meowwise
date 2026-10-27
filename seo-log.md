@@ -139,3 +139,4 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 - Published /blog/are-cats-left-or-right-pawed.html (McDowell et al. 2018 Animal Behaviour main paper). Internal links from behavior pillar (card + FAQ), research page (3 papers), blog index. IndexNow HTTP 200 for 13 URLs. Commit dd088e8.
 ## 2026-10-26
 - Published /blog/why-are-orange-cats-usually-male.html (Kaelin et al. 2025 Current Biology main paper; Toh et al. 2025; Szczerbal et al. 2026). Internal links from breeds page (coat color card + related), glossary (calico and tortoiseshell), research page (3 papers), blog index. IndexNow HTTP 200 for 8 URLs. Commit 313273d.
+- 2026-10-27: Published /blog/how-to-stop-cat-hunting.html (Cecchetti et al. 2021 Current Biology main paper; Ruxton et al. 2002; Lockwood et al. 2025; Loss et al. 2013). Internal links from behavior pillar (hunting card + FAQ), research page (4 papers), blog index. IndexNow HTTP 200 for 7 URLs. Commit d716d50.
