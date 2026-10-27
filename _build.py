@@ -348,7 +348,19 @@ def render(p, pages_by_slug, blog_posts):
 
 
 def main():
+    # Legal-hold gate (RULE.md, 27 Oct 2026): flagged pages become HOLD_REVIEW and are never rendered.
+    import sys
+    sys.path.insert(0, os.path.join(ROOT, "_tools"))
+    import legal_gate
+    held, notes = legal_gate.run("build")
+    for n in notes:
+        print("legal gate:", n)
+    for slug in held:
+        out = os.path.join(ROOT, slug)
+        if os.path.exists(out):
+            os.remove(out)
     pages = [parse(f) for f in sorted(glob.glob(os.path.join(SRC, "**", "*.html"), recursive=True))]
+    pages = [p for p in pages if p["slug"] not in held]
     by_slug = {p["slug"]: p for p in pages}
     blog_posts = sorted([p for p in pages if p["type"] == "blog"], key=lambda p: (p["published"], p["title"]))
     for p in pages:
