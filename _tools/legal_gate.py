@@ -10,6 +10,13 @@ Never write that file yourself.
 Code-enforced: rule 3 (every image must have a licence/origin record), rule 4 (blog/article/research
 pages need >=1 source with an http URL), rule 6 (election wording), rules 1/2/5/7/8 keyword tripwires.
 Everything else (defamation judgement, misleading headlines, conflicting sources) is judgement-only.
+
+Severity tiers (RULE.md AMENDMENT + AMENDMENT 2, 27 Oct 2026):
+  HIGH (rules 1, 2, 6, 8): hard hold, status HOLD_REVIEW + queue.jsonl, never self-cleared.
+  MODERATE (rules 3, 4, 5, 7): not a hard hold. The page is kept out of the build (and the push is
+  refused if it is in the output) until it is fixed, reviewed SAFE by
+  /workspace/content-review/bin/chatgpt_review.py and logged in moderate-clearances.jsonl with
+  site meowwise.com, chatgpt_verdict SAFE and the sha256 of that exact file version.
 """
 import glob, hashlib, json, os, re, sys, datetime
 
@@ -18,6 +25,8 @@ SRC = os.path.join(ROOT, "_src")
 REVIEW = "/workspace/content-review"
 QUEUE = os.path.join(REVIEW, "queue.jsonl")
 APPROVALS = os.path.join(REVIEW, "approvals.jsonl")
+CLEARANCES = os.path.join(REVIEW, "moderate-clearances.jsonl")
+HIGH_RULES = {1, 2, 6, 8}
 SITE = "meowwise.com"
 LEGAL_SLUGS = {"terms.html", "privacy.html", "disclaimer.html", "contact.html", "thanks.html", "404.html", "photo-credits.html"}
 
@@ -36,6 +45,8 @@ def parse(path):
     head, body = raw.split("\n---\n", 1)
     meta = {"source": []}
     for line in head.strip().splitlines():
+        if ":" not in line:
+            continue
         k, v = line.split(":", 1)
         if k.strip() == "source":
             meta["source"].append(v.strip())
@@ -58,6 +69,23 @@ def approved(slug, digest):
         except Exception:
             continue
         if a.get("site") == SITE and a.get("path") == slug and a.get("sha256") == digest:
+            return True
+    return False
+
+
+def tier(rule):
+    return "HIGH" if rule in HIGH_RULES else "MODERATE"
+
+
+def moderate_cleared(digest):
+    if not os.path.exists(CLEARANCES):
+        return False
+    for l in open(CLEARANCES, encoding="utf-8"):
+        try:
+            a = json.loads(l)
+        except Exception:
+            continue
+        if a.get("site") == SITE and a.get("sha256") == digest and str(a.get("chatgpt_verdict", "")).upper() == "SAFE":
             return True
     return False
 
@@ -105,7 +133,7 @@ def set_hold(path, raw):
 def run(mode):
     """mode: 'build' (auto-hold new flags, return held slugs) or 'check' (no writes, exit 1 if anything unsafe)."""
     imgs = image_records()
-    held, problems = [], []
+    held, problems, pending = [], [], []
     for path in sorted(glob.glob(os.path.join(SRC, "**", "*.html"), recursive=True)):
         slug, meta, raw, flags = check_page(path, imgs)
         is_held = meta.get("status", "").upper() == "HOLD_REVIEW"
@@ -118,6 +146,14 @@ def run(mode):
             continue
         if not flags or approved(slug, sha(raw)):
             continue
+        high = [f for f in flags if tier(f[0]) == "HIGH"]
+        if not high:
+            if moderate_cleared(sha(raw)):
+                continue
+            # MODERATE only: no hard hold; keep out of the build until fixed + ChatGPT SAFE + logged
+            pending.append(slug)
+            problems.append(f"{slug}: MODERATE rules {sorted({f[0] for f in flags})} (fix, run chatgpt_review.py, log clearance; sha256 {sha(raw)}): " + "; ".join(f[2] for f in flags))
+            continue
         if mode == "build":
             set_hold(path, raw)
             ts = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
@@ -125,17 +161,24 @@ def run(mode):
                 with open(QUEUE, "a", encoding="utf-8") as q:
                     q.write(json.dumps({"ts": ts, "site": SITE, "bot": "Cat Site Bot", "title": meta.get("title", slug),
                         "flagged": flagged, "rule": rule, "sources": [s.rsplit("|", 1)[-1].strip() for s in meta["source"]],
-                        "suggestion": why + "; needs Joshua's review", "draft_path": path, "status": "HOLD_REVIEW"}) + "\n")
+                        "severity": tier(rule), "suggestion": why + "; needs Joshua's review", "draft_path": path, "status": "HOLD_REVIEW"}) + "\n")
             held.append(slug)
-            problems.append(f"{slug}: NEW HOLD rules {sorted({f[0] for f in flags})}")
+            problems.append(f"{slug}: NEW HOLD (HIGH rules {sorted({f[0] for f in high})}; all rules {sorted({f[0] for f in flags})})")
         else:
-            problems.append(f"{slug}: flagged rules {sorted({f[0] for f in flags})}: " + "; ".join(f[2] for f in flags))
+            problems.append(f"{slug}: flagged HIGH rules {sorted({f[0] for f in high})}: " + "; ".join(f[2] for f in flags))
     # held pages must never exist in the built output or sitemap
     sm = open(os.path.join(ROOT, "sitemap.xml")).read() if os.path.exists(os.path.join(ROOT, "sitemap.xml")) else ""
     for slug in held:
         if mode == "check" and (os.path.exists(os.path.join(ROOT, slug)) or slug in sm):
             problems.append(f"{slug}: HOLD_REVIEW page present in built output/sitemap")
-    return held, problems
+    for slug in pending:
+        if mode == "check" and (os.path.exists(os.path.join(ROOT, slug)) or slug in sm):
+            problems.append(f"{slug}: uncleared MODERATE page present in built output/sitemap")
+    if mode == "check":
+        # an uncleared MODERATE draft that is not built does not block pushes of other pages
+        problems = [p for p in problems if not (p.split(":", 1)[0] in pending and ": MODERATE rules" in p)]
+    # build excludes held + pending pages
+    return held + pending if mode == "build" else held, problems
 
 
 if __name__ == "__main__":
