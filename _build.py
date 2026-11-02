@@ -16,7 +16,7 @@ INDEXNOW_KEY = "fbe2e797c1db901fb91646b40e01856f"
 GA4_ID = "G-R5TMVXKZHJ"   # GA4, loaded only after consent
 CF_BEACON_TOKEN = "9ee8d6c8b58a46269869669b5c00c42c"      # Cloudflare Web Analytics token; empty = beacon omitted
 GSC_TOKEN = "n-CT2j0L2EDabM9k0DipiKhgW2O-dqoDbQyRCSWqCc4"            # Google Search Console verification token; empty = tag omitted
-TODAY = "2026-11-01"
+TODAY = "2026-11-02"
 
 # Pages that show the shared emergency / poison-helpline box. The fragment is
 # rendered here so a rebuild cannot drop it. Numbers checked 23 Oct 2026:
@@ -180,9 +180,13 @@ def render(p, pages_by_slug, blog_posts):
     body = p["body"].replace("{{SITE}}", SITE_URL)
 
     if "{{BLOG_LIST}}" in body:
-        items = "".join(
-            f'<li><a href="/{b["slug"]}"><b>{html.escape(b["label"])}</b></a><br><span class=sci>{html.escape(b["description"])}</span></li>'
-            for b in blog_posts)
+        def post_li(b):
+            thumb = b.get("thumb")
+            img = (f'<img class="thumb" src="/{thumb}" alt="{html.escape(b.get("thumb_alt", b["label"]))}" '
+                   f'width="84" height="84" loading="lazy" decoding="async">' if thumb else "")
+            return (f'<li>{img}<div><a href="/{b["slug"]}"><b>{html.escape(b["label"])}</b></a><br>'
+                    f'<span class=sci>{html.escape(b["description"])}</span></div></li>')
+        items = "".join(post_li(b) for b in blog_posts)
         body = body.replace("{{BLOG_LIST}}", f'<ul class="postlist">{items}</ul>')
 
     if "{{GAMES}}" in body:
