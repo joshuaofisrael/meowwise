@@ -325,7 +325,7 @@ def render(p, pages_by_slug, blog_posts):
     footer = (DIVIDER + f'<footer>{YARN}<section class="contact-us" id="contact-us" aria-labelledby="contact-us-h"><h2 id="contact-us-h">Contact us</h2>'
               f'<p>Questions, corrections or ideas? <a href="{link("contact.html")}">Send us a message</a> through our contact form.</p></section>'
               f'<p>{SITE_NAME}: original educational content about cats. All text and illustrations are original; photos are CC0 and credited, and AI generated images are labelled. Not a substitute for veterinary care.</p>'
-              f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a> · <a href="{link("teachers/")}">For teachers</a> · <a href="{link("research/")}">Research</a> · <a href="{link("games/")}">Games</a> · <a href="{link("photo-credits.html")}">Photo credits</a> · <a href="#" data-consent-open>Cookie settings</a></p></footer>')
+              f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("editorial-disclosure.html")}">Editorial disclosure</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a> · <a href="{link("teachers/")}">For teachers</a> · <a href="{link("research/")}">Research</a> · <a href="{link("games/")}">Games</a> · <a href="{link("photo-credits.html")}">Photo credits</a> · <a href="#" data-consent-open>Cookie settings</a></p></footer>')
     beacon = ""
     if CF_BEACON_TOKEN:
         beacon = ("<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' "
@@ -341,7 +341,7 @@ def render(p, pages_by_slug, blog_posts):
                    "function close(){var b=document.getElementById('mtm-consent');if(b)b.remove();}"
                    "function set(v){try{localStorage.setItem(K,v)}catch(e){}close();if(v==='granted')load();else{gtag('consent','update',{analytics_storage:'denied'});document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(n.indexOf('_ga')===0){document.cookie=n+'=;Max-Age=0;path=/;domain=.'+location.hostname.replace(/^www\\./,'');document.cookie=n+'=;Max-Age=0;path=/';}});}}"
                    "function show(){if(document.getElementById('mtm-consent'))return;var d=document.createElement('div');d.id='mtm-consent';d.setAttribute('role','dialog');d.setAttribute('aria-label','Cookie consent');"
-                   "d.innerHTML='<p>We would like to use Google Analytics cookies to understand how visitors use MeowWise. No ads. <a href=\"/privacy.html\">Privacy policy</a></p><button type=\"button\" class=\"acc\">Accept</button><button type=\"button\" class=\"rej\">Reject</button>';"
+                   "d.innerHTML='<p>We would like to use Google Analytics cookies to understand how visitors use MeowWise. Advertising cookies are explained in our <a href=\"/privacy.html\">privacy policy</a>.</p><button type=\"button\" class=\"acc\">Accept</button><button type=\"button\" class=\"rej\">Reject</button>';"
                    "d.querySelector('.acc').onclick=function(){set('granted')};d.querySelector('.rej').onclick=function(){set('denied')};document.body.appendChild(d);}"
                    "var v=null;try{v=localStorage.getItem(K)}catch(e){}if(v==='granted')load();else if(v!=='denied')show();"
                    "document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-consent-open]');if(t){e.preventDefault();show();}});})();</script>")
@@ -381,7 +381,7 @@ def main():
     sm.append("</urlset>")
     open(os.path.join(ROOT, "sitemap.xml"), "w").write("\n".join(sm) + "\n")
 
-    bots = ["Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "GPTBot", "PerplexityBot", "Perplexity-User",
+    bots = ["Googlebot", "Mediapartners-Google", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "GPTBot", "PerplexityBot", "Perplexity-User",
             "ClaudeBot", "Claude-SearchBot", "Claude-User", "Google-Extended", "Applebot", "Applebot-Extended",
             "DuckAssistBot", "Amazonbot", "CCBot", "anthropic-ai", "Bytespider", "Meta-ExternalAgent", "cohere-ai"]
     rb = "User-agent: *\nAllow: /\n\n" + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots) + f"Sitemap: {SITE_URL}sitemap.xml\n"
@@ -393,7 +393,7 @@ def main():
     tools = [p for p in indexable if p.get("group") == "tool"]
     posts = [p for p in indexable if p["type"] == "blog"]
     edu = [p for p in indexable if p["type"] in ("teacher", "research")]
-    info = [by_slug[s] for s in ("about.html", "contact.html", "terms.html", "privacy.html", "disclaimer.html") if s in by_slug]
+    info = [by_slug[s] for s in ("about.html", "contact.html", "terms.html", "privacy.html", "disclaimer.html", "editorial-disclosure.html") if s in by_slug]
     breeds_anchor = by_slug.get("breeds.html", {}).get("anchors", "").replace("{{SITE}}", SITE_URL)
     llms = [f"# {SITE_NAME}", "",
             f"> {SITE_NAME} is a free, original, plain language guide to cats for owners and future owners: cat breeds and their inherited health risks, everyday care, health warning signs and emergencies, behavior and body language, nutrition, kittens and senior cats. Every guide answers the main question first and cites veterinary sources such as the Cornell Feline Health Center, AAFP, AAHA, International Cat Care and UC Davis.",
