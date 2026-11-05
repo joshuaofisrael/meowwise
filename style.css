@@ -59,3 +59,10 @@ footer{background:#1a0b2e!important;color:#f3e9ff;border-top:3px solid var(--lim
 .photo img{transition:transform .5s ease}.photo:hover img{transform:scale(1.03)}.photo{overflow:hidden}
 @media(max-width:760px){.feature{grid-template-columns:1fr}.feature.flip .photo{order:0}.hero-photo.ai{width:100%}}
 @media(prefers-reduced-motion:reduce){.photo img{transition:none}.photo:hover img{transform:none}}
+
+/* style-pass 2026-11-05 */
+:focus-visible{outline:3px solid #fb7185;outline-offset:3px}
+main p,article p{max-width:68ch;line-height:1.7}
+.card img,figure img,.tile img{aspect-ratio:3/2;object-fit:cover;width:100%;height:auto;display:block}
+footer{display:flex;flex-wrap:wrap;gap:.4rem 1rem;justify-content:center;align-items:center}
+@media(max-width:640px){main{padding:1rem .85rem}.grid{grid-template-columns:1fr}}
