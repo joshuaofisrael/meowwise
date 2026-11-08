@@ -284,7 +284,7 @@ def render(p, pages_by_slug, blog_posts):
                 f'<meta name="twitter:description" content="{html.escape(desc)}">'
                 f'<meta name="twitter:image" content="{SITE_URL}og.png">')
     head += [ld(x) for x in lds]
-    head.append("</head><body>")
+    head.append("<script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5681559774142917' crossorigin='anonymous'></script></head><body>")
 
     def link(target):
         return SITE_URL + target if slug == "404.html" else "/" + target
