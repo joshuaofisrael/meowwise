@@ -366,7 +366,7 @@ def main():
     pages = [parse(f) for f in sorted(glob.glob(os.path.join(SRC, "**", "*.html"), recursive=True))]
     pages = [p for p in pages if p["slug"] not in held]
     by_slug = {p["slug"]: p for p in pages}
-    blog_posts = sorted([p for p in pages if p["type"] == "blog"], key=lambda p: (p["published"], p["title"]))
+    blog_posts = sorted([p for p in pages if p["type"] == "blog"], key=lambda p: (p["published"], p["title"]), reverse=True)
     for p in pages:
         dest = os.path.join(ROOT, p["slug"])
         os.makedirs(os.path.dirname(dest), exist_ok=True)
