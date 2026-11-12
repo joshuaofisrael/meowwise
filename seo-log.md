@@ -158,3 +158,6 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 - Privacy Advertising section now discloses Google AdSense, cookies and third-party ad vendors, and the opt-out at https://adssettings.google.com. About and disclaimer no longer say the site has no advertising.
 - New /editorial-disclosure.html (editorial process, labelled AI images, ads separate from guides), linked in the footer with About, Contact, Privacy and Terms.
 - robots.txt allows Mediapartners-Google. Legal gate passed. No AdSense application and no spend.
+
+## 2026-11-12 — Evergreen: Why do cats bring you dead animals?
+- Published /blog/why-do-cats-bring-you-dead-animals.html (written by Grok Bot; PetMD, Tufts Catnip, Live Science, Loss et al. 2013 DOI checked on Crossref and abstract read on Europe PMC) with 1 reused AI image (ai-cat-eating-grass-outdoors.webp), blog index/homepage card, sitemap, llms.txt. Links to how-to-stop-cat-hunting for prevention.
