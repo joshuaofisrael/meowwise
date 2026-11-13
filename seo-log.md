@@ -161,3 +161,6 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 
 ## 2026-11-12 — Evergreen: Why do cats bring you dead animals?
 - Published /blog/why-do-cats-bring-you-dead-animals.html (written by Grok Bot; PetMD, Tufts Catnip, Live Science, Loss et al. 2013 DOI checked on Crossref and abstract read on Europe PMC) with 1 reused AI image (ai-cat-eating-grass-outdoors.webp), blog index/homepage card, sitemap, llms.txt. Links to how-to-stop-cat-hunting for prevention.
+
+## 2026-11-13 — Evergreen: Why do cats lie in the sun?
+- Published /blog/why-do-cats-lie-in-the-sun.html (written by Grok Bot; The Cat Vet, Reader's Digest, Catster, Veterinary Ireland Journal, all loaded 13 Nov 2026) with 1 reused AI image (ai-cat-windowsill-sunlight.webp), blog index/homepage card, sitemap, llms.txt, _src copy.
