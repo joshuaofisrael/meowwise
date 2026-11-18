@@ -167,3 +167,6 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 
 ## 2026-11-16 — Evergreen: How to introduce two cats safely
 - Published /blog/how-to-introduce-two-cats-safely.html (ChatGPT draft, sources checked 16 Nov 2026: Cats Protection page loaded and claims matched; unsupported claim removed) with 1 reused image (a-black-and-an-orange-kitten-3.webp, source link to photo credits), blog index/homepage card, sitemap, llms.txt, _src copy.
+
+## 2026-11-18 — Evergreen: Why do cats get the zoomies?
+- Published /blog/why-do-cats-get-the-zoomies.html (Cats Protection, VCA Animal Hospitals kitten and general zoomies pages, and Hazel, Goncalves Costa and Henning in The Conversation, all loaded 18 Nov 2026) with 1 reused AI image (ai-kittens-playing-with-yarn.webp, source link to photo credits), blog index/homepage card, sitemap, llms.txt, _src copy.
