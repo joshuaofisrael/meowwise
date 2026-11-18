@@ -170,3 +170,10 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 
 ## 2026-11-18 — Evergreen: Why do cats get the zoomies?
 - Published /blog/why-do-cats-get-the-zoomies.html (Cats Protection, VCA Animal Hospitals kitten and general zoomies pages, and Hazel, Goncalves Costa and Henning in The Conversation, all loaded 18 Nov 2026) with 1 reused AI image (ai-kittens-playing-with-yarn.webp, source link to photo credits), blog index/homepage card, sitemap, llms.txt, _src copy.
+
+## 2026-11-18 — Image policy page (global rule, Joshua's 10:03 AM ET batch)
+- Added /image-policy/ (new `_src/image-policy/index.html`, type page, no sources required): states MeowWise uses two kinds of photo-style images (AI generated photorealistic illustrations, and real CC0-licensed cat photographs from Wikimedia Commons), labelling for each, and points to the existing /photo-credits.html for the full per-image list (kept as is, not replaced). No new images generated or added; no facts/figures invented.
+- Linked /image-policy/ in the sitewide footer (`_build.py`, next to Photo credits) and added it to llms.txt's Optional section (also added photo-credits.html there, previously missing).
+- Repointed every photo caption's Source/Credits link from `/photo-credits.html` to `/image-policy/` across the site (43 `<figcaption>` links in 27 `_src` pages: home, breeds, care, health, behavior, nutrition, kittens, senior-cats, teachers/index, and 18 blog posts). `/photo-credits.html` itself is unchanged and still reachable from /image-policy/ and the footer. Bumped `updated` to 2026-11-18 on exactly those 27 pages (figcaption content materially changed); left pages that only picked up the new sitewide footer link untouched, matching the 5 Nov 2026 editorial-disclosure.html precedent of not treating a footer nav addition alone as a lastmod-worthy change.
+- Legal gate (`python3 _tools/legal_gate.py --check`) passed clean, held=none, before push. Cloudflare beacon and GA4 untouched (same tokens) on every page, including the new one.
+- Covered now: https://meowwise.com/image-policy/ | Image policy (new).

@@ -325,7 +325,7 @@ def render(p, pages_by_slug, blog_posts):
     footer = (DIVIDER + f'<footer>{YARN}<section class="contact-us" id="contact-us" aria-labelledby="contact-us-h"><h2 id="contact-us-h">Contact us</h2>'
               f'<p>Questions, corrections or ideas? <a href="{link("contact.html")}">Send us a message</a> through our contact form.</p></section>'
               f'<p>{SITE_NAME}: original educational content about cats. All text and illustrations are original; photos are CC0 and credited, and AI generated images are labelled. Not a substitute for veterinary care.</p>'
-              f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("editorial-disclosure.html")}">Editorial disclosure</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a> · <a href="{link("teachers/")}">For teachers</a> · <a href="{link("research/")}">Research</a> · <a href="{link("games/")}">Games</a> · <a href="{link("photo-credits.html")}">Photo credits</a> · <a href="#" data-consent-open>Cookie settings</a></p></footer>')
+              f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("editorial-disclosure.html")}">Editorial disclosure</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a> · <a href="{link("teachers/")}">For teachers</a> · <a href="{link("research/")}">Research</a> · <a href="{link("games/")}">Games</a> · <a href="{link("photo-credits.html")}">Photo credits</a> · <a href="{link("image-policy/")}">Image policy</a> · <a href="#" data-consent-open>Cookie settings</a></p></footer>')
     beacon = ""
     if CF_BEACON_TOKEN:
         beacon = ("<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' "
@@ -393,7 +393,7 @@ def main():
     tools = [p for p in indexable if p.get("group") == "tool"]
     posts = [p for p in indexable if p["type"] == "blog"]
     edu = [p for p in indexable if p["type"] in ("teacher", "research")]
-    info = [by_slug[s] for s in ("about.html", "contact.html", "terms.html", "privacy.html", "disclaimer.html", "editorial-disclosure.html") if s in by_slug]
+    info = [by_slug[s] for s in ("about.html", "contact.html", "terms.html", "privacy.html", "disclaimer.html", "editorial-disclosure.html", "photo-credits.html", "image-policy/index.html") if s in by_slug]
     breeds_anchor = by_slug.get("breeds.html", {}).get("anchors", "").replace("{{SITE}}", SITE_URL)
     llms = [f"# {SITE_NAME}", "",
             f"> {SITE_NAME} is a free, original, plain language guide to cats for owners and future owners: cat breeds and their inherited health risks, everyday care, health warning signs and emergencies, behavior and body language, nutrition, kittens and senior cats. Every guide answers the main question first and cites veterinary sources such as the Cornell Feline Health Center, AAFP, AAHA, International Cat Care and UC Davis.",

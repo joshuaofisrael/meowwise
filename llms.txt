@@ -70,3 +70,5 @@ Free classroom resources (no sign up, no ads, no data collection) with NGSS alig
 - [Privacy](https://meowwise.com/privacy.html): MeowWise privacy: contact messages, analytics, and Google AdSense cookies from Google and other vendors. Opt out at adssettings.google.com.
 - [Disclaimer](https://meowwise.com/disclaimer.html): MeowWise disclaimer: general cat information only, no veterinarian client relationship, accuracy limits, and our advertising and affiliate disclosure.
 - [Editorial disclosure](https://meowwise.com/editorial-disclosure.html): How MeowWise researches cat guides, labels AI generated images, and keeps Google AdSense advertising separate from editorial content.
+- [Photo credits](https://meowwise.com/photo-credits.html): Every cat photo on MeowWise with its source file, photographer and license. The 14 listed photos are CC0 public domain dedications from Wikimedia Commons, and the AI generated images are labelled separately.
+- [Image policy](https://meowwise.com/image-policy/): How MeowWise labels its AI generated images and real cat photos, and where each photo caption's Source link leads.
