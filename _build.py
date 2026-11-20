@@ -16,10 +16,11 @@ INDEXNOW_KEY = "fbe2e797c1db901fb91646b40e01856f"
 GA4_ID = "G-R5TMVXKZHJ"   # GA4, loaded only after consent
 CF_BEACON_TOKEN = "9ee8d6c8b58a46269869669b5c00c42c"      # Cloudflare Web Analytics token; empty = beacon omitted
 GSC_TOKEN = "n-CT2j0L2EDabM9k0DipiKhgW2O-dqoDbQyRCSWqCc4"            # Google Search Console verification token; empty = tag omitted
-TODAY = "2026-11-02"
+TODAY = "2026-11-20"
 
 # Pages that show the shared emergency / poison-helpline box. The fragment is
-# rendered here so a rebuild cannot drop it. Numbers checked 23 Oct 2026:
+# rendered here so a rebuild cannot drop it. Numbers re-checked 20 Nov 2026
+# on the FDA lily page, which still lists the same two lines:
 # ASPCA Animal Poison Control (888) 426-4435; Pet Poison Helpline (855) 764-7661.
 VET_BOX_SLUGS = {
     "health.html", "care.html", "kittens.html", "senior-cats.html", "nutrition.html", "toxic-to-cats.html",
@@ -169,6 +170,101 @@ def games_live():
     return os.path.exists(os.path.join(ROOT, "games", "index.html"))
 
 
+def image_sets():
+    ai, photo = set(), set()
+    for name, bucket in (("images/ai-assets.json", ai), ("images/credits.json", photo)):
+        path = os.path.join(ROOT, name)
+        if os.path.exists(path):
+            for row in json.load(open(path, encoding="utf-8")):
+                if row.get("file"):
+                    bucket.add(row["file"])
+    return ai, photo
+
+
+AI_FILES, PHOTO_FILES = image_sets()
+
+
+def image_kind(src):
+    if src in AI_FILES or os.path.basename(src).startswith("ai-"):
+        return "AI-generated"
+    if src in PHOTO_FILES:
+        return "Photo"
+    return "Image policy"
+
+
+def page_image(p):
+    """Card thumbnail: front matter thumb, otherwise the first photo already in the body."""
+    src = (p.get("thumb") or "").lstrip("/")
+    alt = p.get("thumb_alt") or ""
+    if not src:
+        m = re.search(r'<img\b[^>]*\bsrc="([^"]+)"[^>]*>', p["body"])
+        if not m:
+            return None
+        tag = m.group(0)
+        src = re.sub(r"^(\.\./)+", "", m.group(1)).lstrip("/")
+        alt_m = re.search(r'\balt="([^"]*)"', tag)
+        alt = html.unescape(alt_m.group(1)) if alt_m else ""
+    if not src.startswith("images/"):
+        return None
+    return src, alt or p["label"]
+
+
+def split_related(rels):
+    """3 to 4 next-reads mid-article and 3 to 4 at the end, in the author's order."""
+    rels = list(dict.fromkeys(rels))
+    n = len(rels)
+    if n >= 8:
+        return rels[:4], rels[4:8]
+    if n == 7:
+        return rels[:4], rels[3:7]
+    if n >= 6:
+        return rels[:3], rels[3:6]
+    if n == 5:
+        return rels[:3], rels[1:5]
+    if n == 4:
+        return rels[:3], rels
+    return rels, rels
+
+
+def nextreads_html(slugs, pages_by_slug, heading):
+    items = []
+    for r in slugs:
+        target = pages_by_slug.get(r)
+        if not target:
+            continue
+        label = html.escape(target["label"])
+        img = credit = ""
+        if target.get("card_image"):
+            src = target["card_image"]
+            img = f'<img src="/{src}" alt="" width="120" height="80" loading="lazy" decoding="async">'
+            credit = f'<a class="nextread-credit" href="/image-policy/">{image_kind(src)}</a>'
+        items.append(
+            f'<li><a class="nextread" href="/{r}">{img}<span class="nextread-title">{label}</span></a>{credit}</li>'
+        )
+    if not items:
+        return ""
+    return (f'<aside class="card related"><h2>{html.escape(heading)}</h2>'
+            f'<ul class="nextreads">{"".join(items)}</ul></aside>')
+
+
+def insert_mid_related(body, block):
+    if not block:
+        return body
+    usable = []
+    for m in re.finditer(r"<h2\b[^>]*>", body):
+        pre = body[:m.start()]
+        last_sec = pre.rfind("<section")
+        last_close = pre.rfind("</section>")
+        if last_sec > last_close and "faq" in body[last_sec:last_sec + 120]:
+            continue
+        usable.append(m)
+    if len(usable) < 2:
+        return body
+    idx = min(max(len(usable) // 2, 1), len(usable) - 1)
+    pos = usable[idx].start()
+    return body[:pos] + block + "\n" + body[pos:]
+
+
 def render(p, pages_by_slug, blog_posts):
     slug = p["slug"]
     prefix = "../" * slug.count("/")
@@ -181,10 +277,15 @@ def render(p, pages_by_slug, blog_posts):
 
     if "{{BLOG_LIST}}" in body:
         def post_li(b):
-            thumb = b.get("thumb")
-            img = (f'<img class="thumb" src="/{thumb}" alt="{html.escape(b.get("thumb_alt", b["label"]))}" '
-                   f'width="84" height="84" loading="lazy" decoding="async">' if thumb else "")
-            return (f'<li>{img}<div><a href="/{b["slug"]}"><b>{html.escape(b["label"])}</b></a><br>'
+            thumb = b.get("card_image") or b.get("thumb")
+            img = credit = ""
+            if thumb:
+                src = thumb.lstrip("/")
+                alt = b.get("card_alt") or b.get("thumb_alt") or b["label"]
+                img = (f'<img class="thumb" src="/{src}" alt="{html.escape(alt)}" '
+                       f'width="84" height="84" loading="lazy" decoding="async">')
+                credit = f'<br><a class="thumb-credit" href="/image-policy/">{image_kind(src)}</a>'
+            return (f'<li>{img}<div><a href="/{b["slug"]}"><b>{html.escape(b["label"])}</b></a>{credit}<br>'
                     f'<span class=sci>{html.escape(b["description"])}</span></div></li>')
         items = "".join(post_li(b) for b in blog_posts)
         body = body.replace("{{BLOG_LIST}}", f'<ul class="postlist">{items}</ul>')
@@ -203,6 +304,10 @@ def render(p, pages_by_slug, blog_posts):
         body = body.replace("{{VET_BOX}}", box)
     elif p["slug"] in VET_BOX_SLUGS or p.get("vetbox") == "yes":
         body = re.sub(r"</p>", "</p>\n" + box, body, count=1)
+
+    if p["related"] and typ in ("article", "blog", "teacher", "research"):
+        mid_slugs, _end = split_related(p["related"])
+        body = insert_mid_related(body, nextreads_html(mid_slugs, pages_by_slug, "Read next"))
 
     lds = []
     if typ == "home":
@@ -311,8 +416,10 @@ def render(p, pages_by_slug, blog_posts):
                     '<span class="sci">Free to print for classroom use. No sign up needed.</span></p>')
     main.append(body)
     if p["related"]:
-        lis = "".join(f'<li><a href="/{r}">{html.escape(pages_by_slug[r]["label"])}</a></li>' for r in p["related"])
-        main.append(f'<aside class="card related"><h2>Keep reading</h2><ul>{lis}</ul></aside>')
+        _mid, end_slugs = split_related(p["related"])
+        block = nextreads_html(end_slugs, pages_by_slug, "Keep reading")
+        if block:
+            main.append(block)
     if p["source"]:
         lis = "".join(f'<li><a href="{html.escape(u)}" rel="noopener">{html.escape(l)}</a></li>' for l, u in p["source"])
         main.append(f'<section class="card sources" id="sources"><h2>Sources</h2><ol>{lis}</ol></section>')
@@ -365,6 +472,10 @@ def main():
             os.remove(out)
     pages = [parse(f) for f in sorted(glob.glob(os.path.join(SRC, "**", "*.html"), recursive=True))]
     pages = [p for p in pages if p["slug"] not in held]
+    for p in pages:
+        found = page_image(p)
+        if found:
+            p["card_image"], p["card_alt"] = found
     by_slug = {p["slug"]: p for p in pages}
     blog_posts = sorted([p for p in pages if p["type"] == "blog"], key=lambda p: (p["published"], p["title"]), reverse=True)
     for p in pages:

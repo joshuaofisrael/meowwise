@@ -66,3 +66,15 @@ main p,article p{max-width:68ch;line-height:1.7}
 .card img,figure img,.tile img{aspect-ratio:3/2;object-fit:cover;width:100%;height:auto;display:block}
 footer{display:flex;flex-wrap:wrap;gap:.4rem 1rem;justify-content:center;align-items:center}
 @media(max-width:640px){main{padding:1rem .85rem}.grid{grid-template-columns:1fr}}
+
+/* Next-read cards. Text links with a small photo, not buttons, so they are not mistaken for ads. */
+.related ul.nextreads{columns:auto;list-style:none;padding:0;margin:.4rem 0 0;display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.nextreads li{margin:0;break-inside:avoid;background:#fff;border:1px solid #c9bdd8;border-radius:14px;padding:.45rem .55rem .4rem .45rem}
+a.nextread{display:flex;gap:.65rem;align-items:center;text-decoration:none;color:inherit;background:transparent;border:0;padding:0}
+a.nextread:hover .nextread-title{color:var(--plum)}
+.card .nextreads img{width:84px;height:64px;max-width:84px;aspect-ratio:auto;object-fit:cover;border-radius:10px;flex:0 0 auto;display:block}
+.nextread-title{font-weight:650;color:var(--link);text-decoration:underline;text-underline-offset:.12em;font-size:.95rem;line-height:1.35}
+.nextread-credit,.thumb-credit{font-size:.75rem;color:var(--muted);text-decoration:underline;text-underline-offset:.12em}
+.nextread-credit{display:inline-block;margin:.25rem 0 0 .05rem}
+.compare ul{margin:.4rem 0 .2rem;padding-left:1.2rem}
+@media(max-width:760px){.related ul.nextreads{grid-template-columns:1fr}}
