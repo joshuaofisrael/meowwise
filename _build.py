@@ -308,7 +308,7 @@ def render(p, pages_by_slug, blog_posts):
                     f' · Last reviewed: <time datetime="{p["reviewed"]}">{human_date(p["reviewed"])}</time></p>')
     if p.get("printable"):
         main.append('<p class="noprint"><button class="btn" type="button" onclick="window.print()">Print this page</button> '
-                    '<span class="sci">Free to print for classroom use. No sign up, no ads.</span></p>')
+                    '<span class="sci">Free to print for classroom use. No sign up needed.</span></p>')
     main.append(body)
     if p["related"]:
         lis = "".join(f'<li><a href="/{r}">{html.escape(pages_by_slug[r]["label"])}</a></li>' for r in p["related"])
@@ -404,7 +404,7 @@ def main():
             llms.append("  - Breed sections: " + breeds_anchor)
     llms += ["", "## Tools"] + [line(p) + " (searchable table with a stable #anchor per item)" for p in tools]
     llms += ["", "## Blog"] + [line(p) for p in posts]
-    llms += ["", "## For teachers, students and researchers", "Free classroom resources (no sign up, no ads, no data collection) with NGSS alignments, answer keys, a vocabulary list, and a list of peer reviewed papers with DOIs."]
+    llms += ["", "## For teachers, students and researchers", "Free classroom resources (no sign up) with NGSS alignments, answer keys, a vocabulary list, and a list of peer reviewed papers with DOIs."]
     llms += [line(p) for p in edu]
     llms += ["", "## Optional"] + [line(p) for p in info]
     open(os.path.join(ROOT, "llms.txt"), "w").write("\n".join(llms) + "\n")
